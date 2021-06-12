@@ -1,0 +1,147 @@
+//alert("Advertncia")
+
+
+const cryptomonedaSelect = document.querySelector("#criptomonedas");
+
+const obtenerCriptomonedas = criptomonedas => new Promise( resolve => {
+    resolve(criptomonedas);
+}); 
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    consultarCriptomonedas();
+});
+
+function consultarCriptomonedas() {
+    const url = "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=100&tsym=USD";
+
+    fetch(url)
+        .then( respuesta => respuesta.json() )
+        .then( resultado => obtenerCriptomonedas(resultado.Data) )
+        .then( criptomonedas => selectCriptomonedas(criptomonedas) ) 
+
+        console.log(criptomonedas)
+
+};
+
+const botonCripto = $('#criptomonedas')
+
+botonCripto.on ('click', function(event) {
+event.preventDefault()
+
+
+});
+
+
+function selectCriptomonedas(criptomonedas) {
+     criptomonedas.forEach( cripto => {
+         const { FullName, Name } = cripto.CoinInfo;
+
+
+         const option = document.createElement("option");
+         option.value = Name;
+         option.textContent = FullName;
+         cryptomonedaSelect.appendChild(option);
+    })
+
+
+};
+
+
+https://min-api.cryptocompare.com/data/top/mktcapfull?limit=100&tsym=USD
+https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC&tsyms=USD
+https://min-api.cryptocompare.com/data/pricemultifull?fsyms=REP,${criptomoneda}&tsyms=USD,XMR&extraParams=your_app_name
+https://coingecko.com/api/documentations/v3/coins/{id}/tickers
+https://api.coingecko.com/api/v3/coins/list?include_platform=true
+
+
+
+const apikey = { 
+    key:'c6ad726c-569e-4568-8127-b46f662728e4'
+}
+
+request('GET', 'https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest?CMC_PRO_API_KEY=' + apikey.key)
+.then((r1) => {
+    const x1 = JSON.parse(r1.target.responseText);
+    console.log(x1.data.quote.USD.total_market_cap);
+}).catch()
+
+function request(method, url) {
+    return new Promise(function (resolve, reject) {
+        const xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.onload = resolve;
+        xhr.onerror = reject;
+        xhr.send();
+    });
+}
+
+
+coinmarketcap API
+https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest
+https://pro-api.coinmarketcap.com/v1/tools/price-conversion
+
+X-CMC_PRO_API_KEY
+keyApi = c6ad726c-569e-4568-8127-b46f662728e4
+
+
+// jQuery section
+
+const invInicial = $('#inputCapital');
+const aprAnual = $('#inputApr');
+const irDias = $('#inputIr')
+const botonIr = $('#buttonAnalisis');
+
+//console.log(invInicial);
+//console.log(aprAnual);
+//console.log(irDias);
+//console.log(botonIr);
+
+botonIr.on('click', function(event) {
+    event.preventDefault()
+
+    const valorUno = invInicial.val()
+    const valorDos = aprAnual.val()
+
+    if (valorUno.length >= 1,  valorDos.length >= 1) {
+
+
+        console.log( invInicial.val(), aprAnual.val() )
+
+    }
+
+});
+
+
+// Condicionales
+
+if (nombreUsuario + numeroID == ""){
+    alert("No Ingreso Nombre de Usuario y/o id");
+}
+
+else if (nombreUsuario == ""){
+    alert("No Ingreso Nombre de Usuario ");
+}
+
+else if (numeroID == ""){
+    alert("No Ingreso su id");
+}
+
+
+else{
+    alert("Bienvenido " + nombreUsuario + ", ID " + numeroID);
+}
+
+console.log("nombreUsuario + numeroID")
+
+
+9
+
+
+
+
+
+
+
+
